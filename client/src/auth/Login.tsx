@@ -1,29 +1,38 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator";
+import { LoginInputSatate, userLoginSchema } from "@/schema/userSchema";
 
 import { Loader2, LockKeyhole, Mail } from "lucide-react"
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 
 //type define 
-
-type LoginInputState={
-    email:string;
-    password:string;
-}
+// type LoginInputState={
+//     email:string;
+//     password:string;
+// }
 const Login = () => {
 
-  const [input ,setInput]=useState<LoginInputState>({
+  const [input ,setInput]=useState<LoginInputSatate>({
     email:"",
     password:""
   })
+  const [error, setError]= useState<Partial<LoginInputSatate>>({});
   const changeEventHandler=(e:ChangeEvent<HTMLInputElement>)=>{
    const {name,value}=e.target;
    setInput({...input,[name]:value})
   }
+  
   const loginSubmitHandler= (e:FormEvent)=>{
         e.preventDefault();
+        const result = userLoginSchema.safeParse(input);
+        if(!result.success){
+            const fieldError = result.error.formErrors.fieldErrors;
+            setError(fieldError as Partial<LoginInputSatate>)
+            return 
+
+        }
         console.log(input);
   }
 
@@ -47,6 +56,7 @@ const Login = () => {
 
                     />
                     <Mail className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none"/>
+                    {error && <span className="text-sm text-red-500">{error.email}</span>}
                 </div>
                 </div>
 
@@ -62,6 +72,7 @@ const Login = () => {
 
                     />
                     <LockKeyhole className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none"/>
+                    {error && <span className="text-sm text-red-500">{error.password}</span>}
                 </div>
                </div>
                 <div className="mb-10">
