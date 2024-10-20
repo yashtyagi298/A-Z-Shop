@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator";
 import { SignupInputSatate, userSignupSchema } from "@/schema/userSchema";
-import { Loader2, LockKeyhole, Mail, PhoneCall, User } from "lucide-react"
+import { Eye, EyeOff, Loader2, LockKeyhole, Mail, PhoneCall, User } from "lucide-react"
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 //type define 
@@ -22,11 +22,15 @@ const Signup = () => {
     contact:""  
   });
 const [error , setError]= useState<Partial<SignupInputSatate>>({})
+const [showPassword , setShowPassword]= useState<boolean>(false);
+const togglePasswordVisibility=()=>{
+    setShowPassword(!showPassword)
+}
   const changeEventHandler=(e:ChangeEvent<HTMLInputElement>)=>{
    const {name,value}=e.target;
    setInput({...input,[name]:value})
   }
-  const loginSubmitHandler= (e:FormEvent)=>{
+  const signupSubmitHandler= (e:FormEvent)=>{
         e.preventDefault();
         // form validation check start 
         const result = userSignupSchema.safeParse(input);
@@ -35,15 +39,15 @@ const [error , setError]= useState<Partial<SignupInputSatate>>({})
             setError(failedError as Partial<SignupInputSatate>)
             return ;
         }
-        // login api implementation 
+        // signup api implementtation 
         console.log(input);
   }
 
     const loading= false;
     
     return ( 
-        <div className="flex items-center justify-center min-h-screen ">
-            <form onSubmit={loginSubmitHandler} className="md:p-8 w-full max-w-md md:border border-gray-200 rounded-lg mx-4">
+        <div className="flex items-center justify-center  ">
+            <form onSubmit={signupSubmitHandler} className="md:p-8 w-full max-w-md md:border border-gray-200 rounded-lg mx-4">
                 <div className="mb-4">
                     <h1 className="font-bold text-2xl">EazyEats</h1>
                 </div>
@@ -99,7 +103,7 @@ const [error , setError]= useState<Partial<SignupInputSatate>>({})
                <div className="mb-4">
                <div className="relative">
                     <Input
-                        type="password"
+                        type={showPassword?"text":"password"}
                         placeholder="Password"
                         name="password"
                         value={input.password}
@@ -108,6 +112,15 @@ const [error , setError]= useState<Partial<SignupInputSatate>>({})
 
                     />
                     <LockKeyhole className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none"/>
+                    <div onClick={togglePasswordVisibility}className="absolute inset-y-2 cursor-pointer right-2">
+                            {
+                                showPassword?(
+                                    <Eye className="text-gray-500"/>
+                                ):(
+                                    <EyeOff className="text-gray-500"/>
+                                )
+                            }
+                    </div>
                     {error && <span className="text-sm text-red-500">{error.password}</span>}
 
                 </div>
