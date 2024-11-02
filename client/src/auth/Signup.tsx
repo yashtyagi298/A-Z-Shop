@@ -46,10 +46,10 @@ const togglePasswordVisibility=()=>{
     const loading= false;
     
     return ( 
-        <div className="flex items-center justify-center  ">
+        <div className="flex items-center justify-center min-h-screen p-5">
             <form onSubmit={signupSubmitHandler} className="md:p-8 w-full max-w-md md:border border-gray-200 rounded-lg mx-4">
                 <div className="mb-4">
-                    <h1 className="font-bold text-2xl">EazyEats</h1>
+                    <h1 className="font-bold text-2xl text-center">EazyEats</h1>
                 </div>
                 <div className="mb-4">
                 <div className="relative">
@@ -132,9 +132,9 @@ const togglePasswordVisibility=()=>{
                    
                 </div>
             <Separator/>
-            <p className="mt-2">
+            <p className="mt-2 text-center">
                 Already have an account?
-                <Link to="/login" className="font-blue-500">Login</Link>
+                <Link to="/login" className="text-blue-500">Login</Link>
             </p>
             </form>
         </div>

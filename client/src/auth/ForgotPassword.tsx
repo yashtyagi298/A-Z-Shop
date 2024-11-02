@@ -13,7 +13,7 @@ const ForgotPassword = () => {
     const [email,setEmail]= useState<string>("");
     const [loading,setLoading]= useState<boolean>(false);
     return (
-        <div className="flex item-center justify-center  w-full " >
+        <div className="flex items-center justify-center  w-full  min-h-screen p-5 " >
             <form className="flex flex-col gap-5 md:border md:p-8 w-full max-w-md rounded-lg mx-4">
               <div className="text-center ">
             <h1 className="font-extrabold text-2xl mb-2">Forget Password</h1>
@@ -36,7 +36,7 @@ const ForgotPassword = () => {
                 )
             }
            <Separator/>
-            <span>
+            <span className="text-center">
                 Back to {" "}
                 <Link to="/login" className="text-blue-500 hover:underline">Login</Link>
             </span>

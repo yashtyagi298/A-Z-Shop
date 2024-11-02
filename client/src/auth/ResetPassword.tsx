@@ -34,7 +34,7 @@ const ResetPassword = () => {
         }
     }
     return (
-        <div className="flex item-center justify-center  w-full " >
+        <div className="flex items-center justify-center min-h-screen p-5" >
             <form onSubmit = {resetPasswordSubmitHandler}className="flex flex-col gap-5 md:border md:p-8 w-full max-w-md rounded-lg mx-4">
               <div className="text-center ">
             <h1 className="font-extrabold text-2xl mb-2">Reset Password</h1>
@@ -68,7 +68,7 @@ const ResetPassword = () => {
                 )
             }
            <Separator/>
-            <span>
+            <span className="text-center">
                 Back to {" "}
                 <Link to="/login" className="text-blue-500 hover:underline">Login</Link>
             </span>

@@ -43,10 +43,10 @@ const Login = () => {
     const loading =false;
 
     return (
-        <div className="flex items-center justify-center ">
+        <div className="flex items-center justify-center min-h-screen p-5 ">
             <form onSubmit={loginSubmitHandler} className="md:p-8 w-full max-w-md md:border border-gray-200 rounded-lg mx-4">
                 <div className="mb-4">
-                    <h1 className="font-bold text-2xl">EazyEats</h1>
+                    <h1 className="font-bold text-2xl text-center">EazyEats</h1>
                 </div>
                 <div className="mb-4">
                     <div className="relative">
@@ -97,9 +97,9 @@ const Login = () => {
                     <Link to="/forgetpassword" className="text-sm text-gray-500 hover:underline mt-2 block">Forget Password?</Link>
                 </div>
                 <Separator />
-                <p className="mt-2">
+                <p className="mt-2 text-center">
                     Don't have an account?
-                    <Link to="/signup" className="font-blue-500">SignUp</Link>
+                    <Link to="/signup" className="text-blue-500">SignUp</Link>
                 </p>
             </form>
         </div>
